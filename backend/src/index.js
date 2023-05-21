@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import express from 'express';
 
 //import routes
-import {topicRouter} from './routes/temas.js'
+import {topicRouter} from './routes/TopicRouter.js'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -38,7 +38,7 @@ mongoose.connection.on('error', err => {console.log(`Type error: ${err}`)})
 app.use(express.json());
 
 //route
-app.use('/temas',topicRouter);
+app.use('/topics',topicRouter);
 
 //message for inexistent routes
 app.use((req, res) => {
