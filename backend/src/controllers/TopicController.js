@@ -1,5 +1,5 @@
 //import '../daos/ConnectionDAOMongo.js';
-import topicModel from '../models/topic.js'
+import topicModel from '../models/TopicModel.js'
 
 class Topic{
 
