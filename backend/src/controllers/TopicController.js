@@ -18,8 +18,8 @@ class Topic{
 
     async getAllTopics (req,res){
         try {
-            let objDAO = await topicModel.find({});
-            return objDAO;
+            let objsDAO = await topicModel.find({});
+            return objsDAO;
         }
         catch(err) {
             console.log(err.message);
@@ -38,6 +38,24 @@ class Topic{
         } catch (err) {
             console.log(err.message);
         } 
+    }
+
+    async findTopicByLetters (req, res){
+        try{
+            const {letters_title} = req.params
+            if (!letters_title) return res.status(400).json({message: "required characters in the search"})
+            if (letters_title.length<4) return res.status(400).json({message: "more than 3 characters required in the search "})
+
+            let objDAO = await topicModel.find({
+                title: {
+                    $regex: letters_title,
+                    $options: 'i'
+                }
+            });
+            return objDAO  
+        }catch(err){
+            console.log(err.message);
+        }
     }
 
     async updateTopicById  (req,res){
